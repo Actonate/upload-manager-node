@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <title>Upload Example</title>
+    <link rel="stylesheet" href="./css/common.css"></link>
+  </head>
+  <body>
+ 
+    <form id="uploadForm"
+          enctype="multipart/form-data"
+          action="http://localhost:1337/upload/documents"
+          method="post">
+      <input type="file" multiple="multiple" id="userPhotoInput" value="drop files here "name="documents"></div>
+    </form>
+    <span id="status" />
+    <img id="uploadedImage" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="jquery.form.js"></script>
+    <script src="upload.js"></script>
+ 
+  </body>
+</html>
