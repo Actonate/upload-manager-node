@@ -1,4 +1,4 @@
-upload-manager-node (under-development)
+upload-manager-node
 ===================
 
 A universal upload manager which operates based on profiles. This uploader is mainly a server side controller which manages uploading of various types of file. One can manage uploading of various types of files by creating their own custom upload profiles in the **Upload library**. The upload manager is mainly divided into 3 parts. They are as follows :-
