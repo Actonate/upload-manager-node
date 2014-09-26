@@ -31,7 +31,7 @@ function Config(){
 	self.errors['INVALIDFILETYPE'] = {error: true, message: "The file type attribute is invalid"};
 	self.errors['INVALIDSTOREMODE'] = {error: true, message: "The store mode attribute is invalid"};
 	self.errors['INVALIDDELETEAFTERTRANSFER'] = {error: true, message: "The delete after transfer attribute is invalid"};
-	self.errors['INVALIDRENAMESCHEME'] = {error: true, message: "The rename_scheme attribute is invalid"};
+	self.errors['INVALIDRENAMESCHEMA'] = {error: true, message: "The rename_schema attribute is invalid"};
 	self.errors['INVALIDRENAMEPREFIX'] = {error: true, message: "The rename_prefix attribute is invalid"};
 	self.errors['INVALIDOVERWRITE'] = {error: true, message: "The overwrite attribute is invalid"};
 
@@ -44,7 +44,7 @@ function Config(){
 	self.responseObject['VALIDFILETYPE'] = {error: false, message: "The file type attribute is valid"};
 	self.responseObject['VALIDSTOREMODE'] = {error: false, message: "The store mode attribute is valid"};
 	self.responseObject['VALIDDELETEAFTERTRANSFER'] = {error: false, message: "The delete after transfer attribute is valid"};
-	self.responseObject['VALIDRENAMESCHEME'] = {error: false, message: "The rename_scheme attribute is valid"};
+	self.responseObject['VALIDRENAMESCHEMA'] = {error: false, message: "The rename_schema attribute is valid"};
 	self.responseObject['VALIDRENAMEPREFIX'] = {error: false, message: "The rename_prefix attribute is valid"};
 	self.responseObject['VALIDOVERWRITE'] = {error: false, message: "The overwrite attribute is valid"};
 

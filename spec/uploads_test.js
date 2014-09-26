@@ -369,7 +369,7 @@ describe("Testing Uploads Controller", function() {
      /*   Test case if store mode is valid or not
       * 
       *   Expected Input:valid store mode
-      *   Expected Output: INVALIDSTOREMODE
+      *   Expected Output: VALIDSTOREMODE
       */
       it("valid store mode REST", function(done) { 
         upload.checkStoreModeAttribute("REST",function(err,response){
@@ -379,89 +379,51 @@ describe("Testing Uploads Controller", function() {
         //TODO add wait timeout
       });
     });
-    describe("Delete after transfer attribute",function(){
-     /*   Test case if store mode is valid or not
+    describe("Rename schema attribute",function(){
+     /*   Test case if Rename Schema is valid or not
       * 
       *   Expected Input:Valid store mode
       *   Expected Output: true
       */
-      it("Valid delete after transfer", function(done) { 
-        upload.checkStoreModeAttribute(true,function(err,response){
-          expect(response.code).toEqual("VALIDDELETEAFTERTRANSFER");
+      it("Valid rename schema", function(done) { 
+        upload.checkRenameSchemaAttribute("original",function(err,response){
+          expect(response.code).toEqual("VALIDRENAMESCHEMA");
           done();
         });
         //TODO add wait timeout
       });
-     /*   Test case if store mode is valid or not
+     /*   Test case if Rename Schema is valid or not
       * 
-      *   Expected Input:null store mode
-      *   Expected Output: invalid
+      *   Expected Input:null rename schema
+      *   Expected Output: valid
       */
-      it("null store mode", function(done) { 
-        upload.checkStoreModeAttribute(null,function(err,response){
-          expect(response.code).toEqual("INVALIDSTOREMODE");
+      it("null rename schema", function(done) { 
+        upload.checkRenameSchemaAttribute(null,function(err,response){
+          expect(response.code).toEqual("VALIDRENAMESCHEMA");
           done();
         });
         //TODO add wait timeout
       });
-     /*   Test case if store mode is valid or not
+     /*   Test case if Rename schema is valid or not
       * 
-      *   Expected Input:numeric store mode
-      *   Expected Output: INVALIDSTOREMODE
+      *   Expected Input:numeric rename schema
+      *   Expected Output: INVALIDRENAMESCHEMA
       */
-      it("numeric store mode", function(done) { 
-        upload.checkStoreModeAttribute(54242,function(err,response){
-          expect(response.code).toEqual("INVALIDSTOREMODE");
+      it("numeric rename schema", function(done) { 
+        upload.checkRenameSchemaAttribute(54242,function(err,response){
+          expect(response.code).toEqual("INVALIDRENAMESCHEMA");
           done();
         });
         //TODO add wait timeout
       });
-    });
-    describe("Overwrite attribute",function(){
-     /*   Test case if store mode is valid or not
+     /*   Test case if Rename schema is valid or not
       * 
-      *   Expected Input:Valid store mode
-      *   Expected Output: true
+      *   Expected Input:invalid Rename schema
+      *   Expected Output: INVALIDRENAMESCHEMA
       */
-      it("Valid Store mode", function(done) { 
-        upload.checkStoreModeAttribute("directory",function(err,response){
-          expect(response.code).toEqual("VALIDSTOREMODE");
-          done();
-        });
-        //TODO add wait timeout
-      });
-     /*   Test case if store mode is valid or not
-      * 
-      *   Expected Input:null store mode
-      *   Expected Output: invalid
-      */
-      it("null store mode", function(done) { 
-        upload.checkStoreModeAttribute(null,function(err,response){
-          expect(response.code).toEqual("INVALIDSTOREMODE");
-          done();
-        });
-        //TODO add wait timeout
-      });
-     /*   Test case if store mode is valid or not
-      * 
-      *   Expected Input:numeric store mode
-      *   Expected Output: INVALIDSTOREMODE
-      */
-      it("numeric store mode", function(done) { 
-        upload.checkStoreModeAttribute(54242,function(err,response){
-          expect(response.code).toEqual("INVALIDSTOREMODE");
-          done();
-        });
-        //TODO add wait timeout
-      });
-     /*   Test case if store mode is valid or not
-      * 
-      *   Expected Input:invalid store mode
-      *   Expected Output: INVALIDSTOREMODE
-      */
-      it("invalid store mode", function(done) { 
-        upload.checkStoreModeAttribute("hello",function(err,response){
-          expect(response.code).toEqual("INVALIDSTOREMODE");
+      it("invalid rename schema", function(done) { 
+        upload.checkRenameSchemaAttribute("hello",function(err,response){
+          expect(response.code).toEqual("INVALIDRENAMESCHEMA");
           done();
         });
         //TODO add wait timeout
@@ -469,11 +431,125 @@ describe("Testing Uploads Controller", function() {
      /*   Test case if store mode is valid or not
       * 
       *   Expected Input:valid store mode
-      *   Expected Output: INVALIDSTOREMODE
+      *   Expected Output: VALIDRENAMESCHEMA
       */
-      it("valid store mode REST", function(done) { 
-        upload.checkStoreModeAttribute("REST",function(err,response){
-          expect(response.code).toEqual("VALIDSTOREMODE");
+      it("valid Rename schema UUID", function(done) { 
+        upload.checkRenameSchemaAttribute("UUID",function(err,response){
+          expect(response.code).toEqual("VALIDRENAMESCHEMA");
+          done();
+        });
+        //TODO add wait timeout
+      });
+    });
+    describe("Delete after transfer attribute",function(){
+     /*   Test case if delete after transfer is valid or not
+      * 
+      *   Expected Input:Valid value of delete after transfer
+      *   Expected Output: true
+      */
+      it("Valid delete after transfer", function(done) { 
+        upload.checkDeleteAfterTransferAttribute(true,function(err,response){
+          expect(response.code).toEqual("VALIDDELETEAFTERTRANSFER");
+          done();
+        });
+        //TODO add wait timeout
+      });
+     /*   Test case if delete after transfer is valid or not
+      * 
+      *   Expected Input:null delete after transfer
+      *   Expected Output: valid
+      */
+      it("null delete after transfer", function(done) { 
+        upload.checkDeleteAfterTransferAttribute(null,function(err,response){
+          expect(response.code).toEqual("VALIDDELETEAFTERTRANSFER");
+          done();
+        });
+        //TODO add wait timeout
+      });
+     /*   Test case if delete after transfer is valid or not
+      * 
+      *   Expected Input:numeric delete after transfer
+      *   Expected Output: INVALIDDELETEAFTERTRANSFER
+      */
+      it("numeric delete after transfer", function(done) { 
+        upload.checkDeleteAfterTransferAttribute(54242,function(err,response){
+          expect(response.code).toEqual("INVALIDDELETEAFTERTRANSFER");
+          done();
+        });
+        //TODO add wait timeout
+      });
+    });
+    describe("Rename_prefix attribute",function(){
+     /*   Test case if Rename_prefix is valid or not
+      * 
+      *   Expected Input:Valid Rename_prefix
+      *   Expected Output: valid
+      */
+      it("Valid Rename_prefix", function(done) { 
+        upload.checkRenamePrefixAttribute("image/jpeg",function(err,response){
+          expect(response.code).toEqual("VALIDRENAMEPREFIX");
+          done();
+        });
+        //TODO add wait timeout
+      });
+     /*   Test case if Rename_prefix is valid or not
+      * 
+      *   Expected Input:null Rename_prefix
+      *   Expected Output: valid
+      */
+      it("null Rename_prefix", function(done) { 
+        upload.checkRenamePrefixAttribute(null,function(err,response){
+          expect(response.code).toEqual("VALIDRENAMEPREFIX");
+          done();
+        });
+        //TODO add wait timeout
+      });
+     /*   Test case if Rename_prefix is valid or not
+      * 
+      *   Expected Input:invalid Rename_prefix
+      *   Expected Output: INVALIDRENAMEPREFIX
+      */
+      it("invalid Rename_prefix", function(done) { 
+        upload.checkRenamePrefixAttribute(54242,function(err,response){
+          expect(response.code).toEqual("INVALIDRENAMEPREFIX");
+          done();
+        });
+        //TODO add wait timeout
+      });
+    });
+    describe("Overwrite attribute",function(){
+     /*   Test case if Overwrite is valid or not
+      * 
+      *   Expected Input:Valid value of Overwrite
+      *   Expected Output: true
+      */
+      it("Valid Overwrite", function(done) { 
+        upload.checkOverwriteAttribute(true,function(err,response){
+          expect(response.code).toEqual("VALIDOVERWRITE");
+          done();
+        });
+        //TODO add wait timeout
+      });
+     /*   Test case if Overwrite is valid or not
+      * 
+      *   Expected Input:null overwrite
+      *   Expected Output: valid
+      */
+      it("null Overwrite", function(done) { 
+        upload.checkOverwriteAttribute(null,function(err,response){
+          expect(response.code).toEqual("VALIDOVERWRITE");
+          done();
+        });
+        //TODO add wait timeout
+      });
+     /*   Test case if Overwrite is valid or not
+      * 
+      *   Expected Input:numeric Overwrite
+      *   Expected Output: INVALIDOVERWRITE
+      */
+      it("numeric overwrite", function(done) { 
+        upload.checkOverwriteAttribute(54242,function(err,response){
+          expect(response.code).toEqual("INVALIDOVERWRITE");
           done();
         });
         //TODO add wait timeout
