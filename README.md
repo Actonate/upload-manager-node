@@ -166,10 +166,7 @@ Store mode
  Any prefix you want to append with your file name.
  </td>
 </tr>
-<<<<<<< HEAD
-=======
 </table>
->>>>>>> 139e12926d99e8fa2108125a1b9ca9347aef0022
 
 #### A sample file uploader(client side)
 **Upload.html**
