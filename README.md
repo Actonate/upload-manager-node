@@ -1,9 +1,9 @@
-upload-manager-node
+upload-manager-node (under-development)
 ===================
 
 A universal upload manager which operates based on profiles. This uploader is mainly a server side controller which manages uploading of various types of file. One can manage uploading of various types of files by creating their own custom upload profiles in the **Upload library**. The upload manager is mainly divided into 3 parts. They are as follows :-
 
-1. **Upload profiles:** This is a JSON file where in you can add your custom profiles that you want to use for your uploader.Various fields of an *upload profile* are explained below :-
+1. **Upload profiles:** These are JSON files where in you can add your custom profiles that you want to use for your uploader.Various fields of an *upload profile* are explained below :-
   * **Field name:** It specifies the upload profile, that the uploaded file refers to. Eg. A company logo can have a field name called 'logo' that refers to the 'logo' profile of the upload library.
   * **Size:** It specifies the minimum and maximum size of the file allowed.
   * **File type:** MIME types of the various file types. Eg. image/jpeg,image/png. If the file type is 'image' then following other attributes would also be included viz.
@@ -31,15 +31,15 @@ A universal upload manager which operates based on profiles. This uploader is ma
     {
     "Field name":"image",
     "Size":{
-             "min":"5kb",
-             "max":"2000kb"
+             "minSize":5,
+             "maxSize":2000
            },
     "File type":"image/gif,image/png,image/jpeg,image/bmp",
     "Image":{
-              "Min image height":"200px",
-              "Max image height":"500px",
-              "Min image width":"200px",
-              "Max image width":"600px"
+              "Min image height":200,
+              "Max image height":500,
+              "Min image width":200,
+              "Max image width":600
             }
     "Extension":".gif,.png,.jpeg,.jpg,.bmp",
     "Store mode":"directory",
@@ -55,8 +55,8 @@ The above upload profile allows us to impose various constraints such as min siz
     {
     "Field name":"documents",
     "Size":{
-             "min":"5kb",
-             "max":"10000kb"
+             "minSize":5,
+             "maxSize":10000
            },
     "File type":"application/pdf,application/msword",
     "Extension":".pdf,.doc,.docx",
@@ -166,10 +166,7 @@ Store mode
  Any prefix you want to append with your file name.
  </td>
 </tr>
-<<<<<<< HEAD
-=======
 </table>
->>>>>>> 139e12926d99e8fa2108125a1b9ca9347aef0022
 
 #### A sample file uploader(client side)
 **Upload.html**
