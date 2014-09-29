@@ -13,12 +13,8 @@ var log = bunyan.createLogger({
 var config = require('../api/lib/config.js')
 
 describe("Testing Uploads Controller", function() {
- /*   Test case if file does not exist
-  * 
-  *   Expected Input: filename
-  *   Expected Output: JSON object with error message file does not exist
-  */
-  describe("readJSONFromFile",function(){
+  //check if the file exists or not
+  xdescribe("readJSONFromFile",function(){
     it("File does not exists", function(done) {
       upload.readJSONFromFile(config.filePath+'xyz.json',function(err,response){
         expect(response.code).toEqual("FILENOTFOUND");
@@ -42,7 +38,8 @@ describe("Testing Uploads Controller", function() {
       });
     });
   });
-  describe("checkJSONSanity",function(){
+  //check if the file is a valid json or not
+  xdescribe("checkJSONSanity",function(){
      /*   Test case if file is valid JSON file
       * 
       *   Expected Input: filename
@@ -83,30 +80,12 @@ describe("Testing Uploads Controller", function() {
             });
           }
       //TODO add wait timeout
+      });
     });
   });
-   /*   Test case if file is empty JSON file
-    * 
-    *   Expected Input: filename
-    *   Expected Output: Error code ISNOTJSON
-    */
-    // it("Empty JSON file", function(done) {
-    //   fs.writeFile(config.filePath+'empty.json', function(err) {
-    //       if(err) {
-    //         console.log(err);
-    //       } 
-    //       else {
-    //         upload.checkJSONSanity(config.filePath+'empty.json',function(err,response){
-    //           expect(response.code).toEqual("ISEMPTY");
-    //           done();
-    //           fs.unlinkSync(config.filePath+'empty.json');
-    //         });
-    //       }
-    //   //TODO add wait timeout
-    //   });
-    // });
-  });
-  describe("check validity of attributes",function(){
+  //Checking various attributes of the json file
+  xdescribe("check validity of attributes",function(){
+    //check the field name attribute
     describe("Fieldname attribute",function(){
      /*   Test case if field name is valid or not
       * 
@@ -181,6 +160,7 @@ describe("Testing Uploads Controller", function() {
         //TODO add wait timeout
       });
     });
+    //check the size attribute
     describe("Size attribute",function(){
      /*   Test case if size is valid or not
       * 
@@ -279,6 +259,7 @@ describe("Testing Uploads Controller", function() {
         //TODO add wait timeout
       });
     });
+    //check the file type attribute
     describe("File type attribute",function(){
      /*   Test case if file type is valid or not
       * 
@@ -317,6 +298,46 @@ describe("Testing Uploads Controller", function() {
         //TODO add wait timeout
       });
     });
+    //check the extension attribute
+    describe("Extension attribute",function(){
+     /*   Test case if extension is valid or not
+      * 
+      *   Expected Input:Valid extension
+      *   Expected Output: true
+      */
+      it("Valid extension", function(done) { 
+        upload.checkExtensionAttribute(".jpeg",function(err,response){
+          expect(response.code).toEqual("VALIDEXTENSION");
+          done();
+        });
+        //TODO add wait timeout
+      });
+     /*   Test case if extension is valid or not
+      * 
+      *   Expected Input:null extension
+      *   Expected Output: true
+      */
+      it("null extension", function(done) { 
+        upload.checkExtensionAttribute(null,function(err,response){
+          expect(response.code).toEqual("VALIDEXTENSION");
+          done();
+        });
+        //TODO add wait timeout
+      });
+     /*   Test case if extension is valid or not
+      * 
+      *   Expected Input:invalid extension
+      *   Expected Output: INVALIDEXTENSION
+      */
+      it("invalid extension", function(done) { 
+        upload.checkExtensionAttribute(54242,function(err,response){
+          expect(response.code).toEqual("INVALIDEXTENSION");
+          done();
+        });
+        //TODO add wait timeout
+      });
+    });
+    //check the store mode attribute
     describe("Store mode attribute",function(){
      /*   Test case if store mode is valid or not
       * 
@@ -379,6 +400,7 @@ describe("Testing Uploads Controller", function() {
         //TODO add wait timeout
       });
     });
+    //check the rename schema attribute
     describe("Rename schema attribute",function(){
      /*   Test case if Rename Schema is valid or not
       * 
@@ -441,6 +463,7 @@ describe("Testing Uploads Controller", function() {
         //TODO add wait timeout
       });
     });
+    //check the delete after transfer attribute
     describe("Delete after transfer attribute",function(){
      /*   Test case if delete after transfer is valid or not
       * 
@@ -479,6 +502,7 @@ describe("Testing Uploads Controller", function() {
         //TODO add wait timeout
       });
     });
+    //check the rename prefix attribute
     describe("Rename_prefix attribute",function(){
      /*   Test case if Rename_prefix is valid or not
       * 
@@ -517,6 +541,7 @@ describe("Testing Uploads Controller", function() {
         //TODO add wait timeout
       });
     });
+    //check the Overwrite attribute
     describe("Overwrite attribute",function(){
      /*   Test case if Overwrite is valid or not
       * 
@@ -556,6 +581,11 @@ describe("Testing Uploads Controller", function() {
       });
     });
   });
+it("main",function(done){
+  upload.main(12,function(err,response){
+    done();
+  })
+})
 });
 
 

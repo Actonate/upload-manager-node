@@ -1,4 +1,5 @@
 var fs = require('fs');
+var Promise=require('bluebird')
 var bunyan = require('bunyan');
 var config = require('../lib/config.js')
 var log = bunyan.createLogger({
@@ -14,12 +15,22 @@ function UploadsController(){
     var self = this;
     self.filePath=config.getJSONFilePath();
 }
+UploadsController.prototype.main=function(data,callback){
+    var self=this;
+    self.readJSONFromFileAsync(self.filePath)
+    .then(self.checkJSONSanity(self.filePath),function(err,response){
+       console.log("done") 
+    })).error(function(err){
+        console.log("error");
+    })
+}
 /*
  * Checks if the file specified by the filepath exists or not
  */
 UploadsController.prototype.readJSONFromFile=function(filepath,callback) {
     var self=this;
     var filePath=filepath;
+    console.log("readFile");
     //check if file exists
     fs.exists(filePath, function(exists){
         //File does not exists
@@ -42,6 +53,7 @@ UploadsController.prototype.readJSONFromFile=function(filepath,callback) {
 UploadsController.prototype.checkJSONSanity=function(filepath,callback) {
     var self=this;
     var filePath=filepath;
+    console.log(filePath);
     //Read File from file path
     fs.readFile(filePath, {encoding: 'utf-8'},function(err,data){
         if(err){
@@ -184,6 +196,35 @@ UploadsController.prototype.checkFileTypeAttribute=function(data,callback) {
     }
 }
 /*
+ * Checks if the value in the extension attribute is valid or not.
+ *
+ * Extension attribute can be null.
+ * It can contain any string values.
+ */
+UploadsController.prototype.checkExtensionAttribute=function(data,callback) {
+    //Check if extension is not empty
+    if(data!=null){
+        // DataType of extension should be string  
+        if(typeof data==='string'){
+            var response=config.returnObj("VALIDEXTENSION")
+            callback(false, response);
+            return;
+        }
+        //Invalid Data
+        else{
+            var errResponse=config.returnErrorObj("INVALIDEXTENSION")
+            callback(true, errResponse);
+            return;
+        }
+    }
+    //If extension is empty
+    else{
+        var response=config.returnObj("VALIDEXTENSION")
+        callback(false, response);
+        return;
+    }
+}
+/*
  * Checks if the value in the Store mode attribute is valid or not.
  *
  * Store mode attribute can not be null.
@@ -238,7 +279,7 @@ UploadsController.prototype.checkDeleteAfterTransferAttribute=function(data,call
     //If delete after transfer is empty
     else{
         var response=config.returnObj("VALIDDELETEAFTERTRANSFER")
-        callback(true, response);
+        callback(false, response);
         return;
     }
 }
@@ -326,11 +367,10 @@ UploadsController.prototype.checkOverwriteAttribute=function(data,callback) {
     //If Overwrite is empty
     else{
         var response=config.returnObj("VALIDOVERWRITE")
-        callback(true, response);
+        callback(false, response);
         return;
     }
 }
-
 // UploadsController.prototype.uploadfile = function(req, res) {
 // 	var self = this;
 //     var currentTimeMilliseconds = (new Date()).getTime();
@@ -371,4 +411,7 @@ UploadsController.prototype.checkOverwriteAttribute=function(data,callback) {
 //       });
 //     });
 // }
+
+//Promisify all library functions in DbConnector
+Promise.promisifyAll(UploadsController.prototype);
 module.exports = new UploadsController();

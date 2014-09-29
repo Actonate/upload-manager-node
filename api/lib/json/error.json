@@ -1,0 +1,15 @@
+{
+	"INVALIDSIZE" : {"error": true, "message": "The Size attribute is invalid"},
+	"INVALIDFIELDNAME" : {"error": true, "message": "The field name is invalid"},
+	"ISEMPTY" : {"error": true, "message": "This file is empty"},
+	"ISNOTFILE" : {"error": true, "message": "The specified path is not a file"},
+	"ISNOTJSON" : {"error": true, "message": "The file is not valid JSON"},
+	"CODENOTFOUND" : {"error": true, "message": "Error code does not exist"},
+	"FILENOTFOUND" : {"error": true, "message": "The specified file does not exist"},
+	"INVALIDFILETYPE" : {"error": true, "message": "The file type attribute is invalid"},
+	"INVALIDSTOREMODE" : {"error": true, "message": "The store mode attribute is invalid"},
+	"INVALIDDELETEAFTERTRANSFER" : {"error": true, "message": "The delete after transfer attribute is invalid"},
+	"INVALIDRENAMESCHEMA" : {"error": true, "message": "The rename_schema attribute is invalid"},
+	"INVALIDRENAMEPREFIX" : {"error": true, "message": "The rename_prefix attribute is invalid"},
+	"INVALIDOVERWRITE" : {"error": true, "message": "The overwrite attribute is invalid"}
+}
